@@ -18,8 +18,10 @@ const missingOtherRouter = require("./Router/missingOther.route");
 const bannerRouter = require("./Router/banner.route")
 const videoRouter = require("./Router/video.route");
 const newsRouter = require("./Router/news.route");
+const missingMobile = require("./Router/MissingMobile.route");
 const { postphonebook, getphonebook, deletephonebook } = require('./Router/phonebooks.route');
 const humanRouter = require('./Router/missingHuman.route');
+const PetRouter = require("./Router/missingPet.route");
 const allComplaints = require("./Router/allComplaints.route")
 
 // const HumanRouter = require('./Router/missingHuman.route');
@@ -55,6 +57,8 @@ app.use("/newsRoute" ,newsRouter);
 app.use("/missingHuman" , humanRouter);
 app.use('/found-vehicle', foundVehicleRouter);
 app.use("/complaints" , allComplaints);
+app.use("/missing-pet" , PetRouter);
+app.use("/missing-mobile" , missingMobile);
 
 
 // user profile related routes

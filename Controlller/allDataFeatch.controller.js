@@ -12,21 +12,30 @@ const MissingVehicleModel =require("../Model/missingVehicle.model")
 
 
 exports.allComplaints = async(req, res) => {
-   const FoundBag = await FoundBagModel.find({}).limit(2).sort({date: -1})
-    const FoundHuman  = await FoundHumanModel.find({}).limit(2).sort({date: -1})
-    const FoundOther = await FoundOtherModel.find({}).limit(2).sort({date: -1})
-    const  FoundPet  = await  FoundPetModel.find({}).limit(2).sort({date: -1})
-   const FoundVehicle = await FoundVehicleModel.find({}).limit(2).sort({date: -1})
-   const FoundMobile = await FoundMobileModel.find({}).limit(2).sort({date: -1})
-   const MissingBag = await MissingBagModel.find({}).limit(2).sort({date: -1})
-    const MissingHuman = await MissingHumanModel.find({}).limit(2).sort({date: -1})
-   const MissingOther  = await MissingOtherModel.find({}).limit(2).sort({date: -1})
-   const MissingVehicle = await MissingVehicleModel.find({}).limit(2).sort({date: -1})
+      
+        try{
+
+
+   const FoundBag = await FoundBagModel.find({}).sort({_id: -1}).limit(2)
+    const FoundHuman  = await FoundHumanModel.find({}).sort({_id: -1}).limit(2)
+    const FoundOther = await FoundOtherModel.find({}).sort({_id: -1}).limit(2)
+    const  FoundPet  = await  FoundPetModel.find({}).sort({_id: -1}).limit(2)
+   const FoundVehicle = await FoundVehicleModel.find({}).sort({_id: -1}).limit(2)
+   const FoundMobile = await FoundMobileModel.find({}).sort({_id: -1}).limit(2)
+   const MissingBag = await MissingBagModel.find({}).sort({_id: -1}).limit(2)
+    const MissingHuman = await MissingHumanModel.find({}).sort({_id: -1}).limit(2)
+   const MissingOther  = await MissingOtherModel.find({}).sort({_id: -1}).limit(2)
+   const MissingVehicle = await MissingVehicleModel.find({}).sort({_id: -1}).limit(2)
 
    const allComplaints = [...FoundBag, ...FoundHuman, ...FoundOther,
                       ...FoundPet,  ...FoundVehicle, ...FoundMobile, ...MissingBag,
                        ... MissingHuman, ...MissingOther, ...MissingVehicle]
+                    
+      
+                       res.status(200).json({success: true , allComplaints})
 
-        res.status(200).json({success: true , allComplaints})
+       }catch (error) {
+        return res.status(500).json({success: false, error: error.message });
+      }
    
 }
